@@ -4,7 +4,7 @@ class Chat extends Component{
     render(){
         return(
             <div className= "chat">
-            chat
+            Chat
             </div>
         )
     }
