@@ -1,40 +1,33 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-class MessageForm extends Component{
+import Avatar from './Avatar'
+import Metadata from './Metadata'
 
-    state = {
-        body: '',
-
-    }
-
-    handleSubmit = (ev) => {
-        ev.preventDefault()
-        this.props.addMessage(this.state.body)
-        this.setState({body: ''})
-    }
-
-    handleChange = (ev) => {
-        this.setState({body: ev.target.value})
-    }
-
-    render(){
-        return(
-            <form 
-                className="MessageForm"
-                onSubmit= {this.handleSubmit} >
-            
-                <input 
-                    type="text" 
-                    name="body" 
-                    placeholder= "Type a message..."
-                    value= {this.state.body}
-                    onChange= {this.handleChange}
-                    autoFocus
-                />
-                <button type="submit">Send</button>
-            </form>
-        )
-    }
+const Message = ({ message }) => {
+  return (
+    <div className="Message" style={styles.message}>
+      <Avatar user={message.user} />
+      <div className="details" style={styles.details}>
+        <Metadata message={message} />
+        <div className="body">
+          {message.body}
+        </div>
+      </div>
+    </div>
+  )
 }
 
-export default MessageForm
+const styles = {
+  message: {
+    display: 'flex',
+    marginTop: '1rem',
+    padding: '0 1rem',
+  },
+
+  details: {
+    flex: 1,
+    paddingLeft: '0.5rem',
+  }
+}
+
+export default Message
