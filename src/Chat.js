@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import ChatHeader from './ChatHeader'
 import MessageList from './MessageList'
 import MessageForm from './MessageForm'
+import base from './base'
 
 class Chat extends Component{
 
@@ -33,6 +34,14 @@ class Chat extends Component{
                 <MessageForm addMessage={this.addMessage} />
             </div>
         )
+    }
+
+    componentDidMount(){
+        base.syncState('terry', {
+            context: this,
+            state: 'messages',
+            asArray: true
+        })
     }
 }
 
