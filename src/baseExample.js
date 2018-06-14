@@ -1,19 +1,22 @@
 import firebase from 'firebase/app'
-import database from 'firebase/app'
+import 'firebase/database'
+import 'firebase/auth'
 import Rebase from 're-base'
-
 
 // Initialize Firebase
 const config = {
-    apiKey: "YOUR API_KEY",
-    authDomain: "YOUR AUTH_DOMAIN",
-    databaseURL: "YOUR DATABASE_URL",
-    projectId: "YOUR PROJECT_ID",
-    storageBucket: "YOUR STORAGE_BUCKET",
-    messagingSenderId: "YOUR MESSAGING_SENDER_ID"
-};
+  apiKey: "YOUR API KEY",
+  authDomain: "YOUR AUTH DOMAIN",
+  databaseURL: "YOUR DATABASE URL",
+  projectId: "YOUR PROJECT ID",
+  storageBucket: "YOUR STORAGE BUCKET",
+  messagingSenderId: "YOUR MESSAGING SENDER ID"
+}
 
 const app = firebase.initializeApp(config)
-const db = app.database()
 
+export const googleProvider = new firebase.auth.GoogleAuthProvider()
+export const auth = firebase.auth()
+
+const db = app.database()
 export default Rebase.createClass(db)

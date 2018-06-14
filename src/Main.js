@@ -6,8 +6,8 @@ import Chat from './Chat'
 class Main extends Component {
   state = {
     room: {
-      name: 's2afternoon',
-      description: 'Ask questions and share code',
+      name: 'general',
+      description: 'A general place to chat',
     },
   }
 

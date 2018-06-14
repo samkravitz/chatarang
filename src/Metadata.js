@@ -1,16 +1,13 @@
 import React from 'react'
 
 const Metadata = ({ message }) => {
-
-  const d = new Date()
-
   return (
     <div className="Metadata" style={styles.data}>
       <div className="user" style={styles.user}>
-        {message.user.userName}
+        {message.user.displayName}
       </div>
       <div className="time" style={styles.time}>
-        {d.getYear()}
+        1:10 PM
       </div>
     </div>
   )
