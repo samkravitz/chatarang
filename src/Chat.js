@@ -37,7 +37,7 @@ class Chat extends Component{
     }
 
     componentDidMount(){
-        base.syncState('terry', {
+        base.syncState(this.props.room, {
             context: this,
             state: 'messages',
             asArray: true

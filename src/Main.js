@@ -11,7 +11,7 @@ class Main extends Component {
           user={this.props.user}
           signOut={this.props.signOut}
         />
-        <Chat user={this.props.user} />
+        <Chat user={this.props.user} room= {'general'} />
       </div>
     )
   }
