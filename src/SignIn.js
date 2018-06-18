@@ -40,7 +40,7 @@ class SignIn extends Component {
             onSubmit={this.handleSubmit}
           >
             <h1>Welcome!</h1>
-            {/* <label htmlFor="email" className={css(styles.label)}>
+            {/*<label htmlFor="email" className={css(styles.label)}>
               Email
             </label>
             <input
@@ -68,7 +68,7 @@ class SignIn extends Component {
               className={css(styles.button)}
               onClick={this.authenticatewithGithub}
             >
-              <i className={`fab fa-google ${css(styles.brandIcon)}`}></i>
+              <i className={`fab fa-github ${css(styles.brandIcon)}`}></i>
               Sign in with Github
             </button>
 

@@ -5,10 +5,21 @@ import Chat from './Chat'
 
 class Main extends Component {
   state = {
-    room: {
-      name: 'general',
-      description: 'A general place to chat',
-    },
+    room: {},
+  }
+
+  componentDidMount() {
+    this.loadRoom({
+      name: this.props.match.params.roomName,
+    })
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.roomName !== this.props.match.params.roomName) {
+      this.loadRoom({
+        name: this.props.match.params.roomName,
+      })
+    }
   }
 
   loadRoom = (room) => {
@@ -21,7 +32,6 @@ class Main extends Component {
         <Sidebar
           user={this.props.user}
           signOut={this.props.signOut}
-          loadRoom={this.loadRoom}
         />
         <Chat
           user={this.props.user}
