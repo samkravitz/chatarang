@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
-import { auth, googleProvider } from './base'
+import { auth, googleProvider, githubProvider } from './base'
 
 class SignIn extends Component {
   state = {
@@ -14,22 +14,15 @@ class SignIn extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    this.props.handleAuth({
-      uid: '234243',
-      displayName: this.state.email,
-      email: this.state.email,
-    })
+    // do something?
   }
 
   authenticate = () => {
-    auth
-      .signInWithPopup(googleProvider)
-      .then(
-        response => {
-          console.log(response.user)
-          this.props.handleAuth(response.user)
-        }
-      )
+    auth.signInWithPopup(googleProvider)
+  }
+
+  authenticateWithGithub = () => {
+    auth.signInWithPopup(githubProvider)
   }
 
   render() {
@@ -70,6 +63,15 @@ class SignIn extends Component {
               <i className={`fab fa-google ${css(styles.brandIcon)}`}></i>
               Sign in with Google
             </button>
+            <button
+              type="button"
+              className={css(styles.button)}
+              onClick={this.authenticatewithGithub}
+            >
+              <i className={`fab fa-google ${css(styles.brandIcon)}`}></i>
+              Sign in with Github
+            </button>
+
           </form>
 
           <div className="blurb">
