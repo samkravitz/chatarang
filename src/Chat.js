@@ -11,7 +11,7 @@ class Chat extends Component {
 
     this.state = {
       messages: [],
-      rebaseBinding: null
+      rebaseBinding: null,
     }
   }
 
@@ -19,33 +19,35 @@ class Chat extends Component {
     this.syncMessages()
   }
 
-  componentDidUpdate(prevProps){
-    if(prevProps.room.name !== this.props.room.name){
-        this.syncMessages()
+  componentDidUpdate(prevProps) {
+    if (prevProps.room.name !== this.props.room.name) {
+      this.syncMessages()
     }
   }
 
-  syncMessages() {
-    if(this.state.rebaseBinding){
-        base.removeBinding(this.state.rebaseBinding)
+  syncMessages = () => {
+    // Stop syncing with the current endpoint
+    if (this.state.rebaseBinding) {
+      base.removeBinding(this.state.rebaseBinding)
     }
 
-   const rebaseBinding = base.syncState(`${this.props.room.name}/messages`, {
-        context: this,
-        state: 'messages',
-        asArray: true,
+    // sync with the new endpoint
+    const rebaseBinding = base.syncState(`${this.props.room.name}/messages`, {
+      context: this,
+      state: 'messages',
+      asArray: true,
     })
 
-    this.setState({rebaseBinding})
-    
+    this.setState({ rebaseBinding })
   }
 
   addMessage = (body) => {
     const messages = [...this.state.messages]
     messages.push({
-      id: Date.now(),
+      id: `${this.props.user.uid}-${Date.now()}`,
       user: this.props.user,
       body,
+      createdAt: Date.now(),
     })
 
     this.setState({ messages })
@@ -54,7 +56,10 @@ class Chat extends Component {
   render() {
     return (
       <div className="Chat" style={styles}>
-        <ChatHeader room={this.props.room} />
+        <ChatHeader
+          room={this.props.room}
+          removeRoom={this.props.removeRoom}
+        />
         <MessageList
           messages={this.state.messages}
           room={this.props.room}
